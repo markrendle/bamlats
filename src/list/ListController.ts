@@ -2,23 +2,19 @@
 
 namespace ToDos {
 
-    interface ToDoItem {
-        id: string;
-        text: string;
-        due: string;
-        created: string;
-        done: string;
-        tags: string[];
-    }
 
     class ListController {
         public todoList: ToDoItem[];
 
-        constructor($http: angular.IHttpService) {
+        constructor(todoService: ToDoService, errors: ErrorService) {
 
-            $http.get<ToDoItem[]>('/api/todos')
-                .then((response) => {
-                    this.todoList = response.data;
+            todoService.list()
+                .then((list) => {
+                    this.todoList = list;
+                    errors.push({message: 'test', level: 'warning'});
+                })
+                .catch((error: ErrorInfo) => {
+                    errors.push(error);
                 });
 
         }

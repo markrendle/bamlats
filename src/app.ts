@@ -19,9 +19,18 @@ namespace ToDos {
         $stateProvider.state({
             name: 'root',
             url: '/',
-            controller: 'RootController',
-            controllerAs: 'root',
-            templateUrl: '/root/root.html'
+            views: {
+                '': {
+                    controller: 'RootController',
+                    controllerAs: 'root',
+                    templateUrl: '/root/root.html'
+                },
+                'errors': {
+                    controller: 'ErrorsController',
+                    controllerAs: 'errors',
+                    templateUrl: '/errors/errors.html'
+                }
+            }
         });
 
     });

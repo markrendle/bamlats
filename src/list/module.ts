@@ -2,7 +2,8 @@ namespace ToDos {
 
     const requires = [
         'ui.router',
-        'todos.filters'
+        'todos.filters',
+        'todos.errors'
     ];
 
     export const listModule = angular.module('todos.list', requires);
