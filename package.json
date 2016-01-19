@@ -1,0 +1,37 @@
+{
+  "name": "AtsToDos",
+  "version": "1.0.0",
+  "description": "Learning project for AngularJS and TypeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "keywords": [
+    "angularjs",
+    "typescript"
+  ],
+  "author": "Mark Rendle",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.5.0",
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bower-normalize": "^1.0.6",
+    "gulp-concat": "^2.6.0",
+    "gulp-ng-annotate": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.5.2",
+    "gulp-typescript": "^2.8.1",
+    "gulp-uglify": "^1.4.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "main-bower-files": "^2.9.0",
+    "phantomjs": "^1.9.19",
+    "run-sequence": "^1.1.2"
+  }
+}

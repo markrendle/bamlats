@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app="todos">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDos</title>
+    <link href="/vendor/css/bootstrap.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/vendor/css/select.css" rel="stylesheet">
+    <link href="/css/todos.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <a ui-sref="root" class="navbar-brand">ToDos</a>
+
+            <ul class="nav navbar-nav">
+                <li ui-sref-active="active">
+                    <a ui-sref="root.todos">List</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <ui-view name="messages"></ui-view>
+
+    <ui-view></ui-view>
+
+    <script src="/vendor/js/angular.js"></script>
+    <script src="/vendor/js/angular-messages.js"></script>
+    <script src="/vendor/js/angular-ui-router.js"></script>
+    <script src="/vendor/js/ui-bootstrap-tpls.js"></script>
+    <script src="/vendor/js/select.js"></script>
+    <script src="/vendor/js/moment.js"></script>
+    <script src="/js/app.js"></script>
+</body>
+</html>

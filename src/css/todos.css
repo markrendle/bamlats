@@ -1,0 +1,21 @@
+body {
+    padding-top: 60px;
+}
+
+.done {
+    text-decoration: line-through;
+}
+
+.message-container {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: auto;
+    z-index: 999;
+}
+
+date-box {
+    margin-left: 4px;
+}
+
