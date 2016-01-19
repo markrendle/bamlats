@@ -10,13 +10,17 @@ namespace ToDos {
             errors.subscribe((error) => {
                 this.list.push(error);
                 $timeout(() => {
-                    let i = this.list.indexOf(error);
-                    if (i >= 0) {
-                        this.list.splice(i, 1);
-                    }
+                    this.dismiss(error);
                 }, 5000);
             });
 
+        }
+
+        public dismiss(error: ErrorInfo) {
+            let i = this.list.indexOf(error);
+            if (i >= 0) {
+                this.list.splice(i, 1);
+            }
         }
 
     }

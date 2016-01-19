@@ -5,6 +5,7 @@
 
       <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
         <div class="alert alert-{{error.level}}">
+          <button class="btn close" ng-click="errors.dismiss(error)">&times;</button>
           {{error.message}}
         </div>
       </div>

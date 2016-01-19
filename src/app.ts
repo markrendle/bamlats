@@ -3,7 +3,8 @@ namespace ToDos {
     const deps = [
         'ui.router',
         'todos.list',
-        'todos.filters'
+        'todos.filters',
+        'todos.errors'
     ];
 
     const app = angular.module('todos', deps);
