@@ -6,7 +6,7 @@ namespace ToDos {
         public override: string;
 
         public $get() {
-            return () => this.override || navigator.language;
+            return () => this.override || navigator.language || 'en-GB';
         }
     }
 
@@ -15,6 +15,8 @@ namespace ToDos {
     filterModule.provider('locale', LocaleProvider);
 
     filterModule.filter('moment', (locale: LocaleService) => {
+
+        //console.log(locale());
 
         return function momentFilter(input, format) {
 
