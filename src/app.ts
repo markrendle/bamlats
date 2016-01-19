@@ -1,53 +1,33 @@
 namespace ToDos {
 
     const deps = [
-        "ui.router",
-        "todos.root",
-        "todos.main",
-        "messages"
+        'ui.router',
+        'todos.list'
     ];
 
-    const app = angular.module("todos", deps);
+    const app = angular.module('todos', deps);
 
-    app.config(($stateProvider: angular.ui.IStateProvider,
-                $urlRouterProvider: angular.ui.IUrlRouterProvider,
-                $httpProvider: angular.IHttpProvider,
-                messageHubProvider: MessageHubProvider) => {
+    class RootController {
 
-        const apiRegex = /^\/api\//;
+    }
 
-        $httpProvider.interceptors.push((messageHub) => ({
-            request: (config: angular.IRequestConfig) => {
-                if (apiRegex.test(config.url)) {
-                    //config.headers["Authorization"] = "Bearer " + localStorage['apiToken'];
-                    config.headers["Authorization"] = "SecretSquirrel";
-                }
+    app.controller('RootController', RootController);
 
-                // HAS TO RETURN THE CONFIG OUT AGAIN
-                return config;
-            }
-        }));
-
-        messageHubProvider.autoDismiss = 1000;
+    app.config(($stateProvider: angular.ui.IStateProvider) => {
 
         $stateProvider.state({
-            name: "root",
-            url: "/",
-            views: {
-                "": {
-                    controller: "RootController",
-                    controllerAs: "root",
-                    templateUrl: "root/root.html"
-                },
-                "messages": {
-                    controller: "MessagesController",
-                    controllerAs: "ctrl",
-                    templateUrl: "messages/messages.html"
-                }
-            }
+            name: 'root',
+            url: '/',
+            controller: 'RootController',
+            controllerAs: 'root',
+            templateUrl: '/root/root.html'
         });
 
-        $urlRouterProvider.otherwise("/");
+    });
+
+    app.config(($urlRouterProvider: angular.ui.IUrlRouterProvider) => {
+
+        $urlRouterProvider.otherwise('/');
 
     });
 

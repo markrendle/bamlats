@@ -1,38 +1,32 @@
-describe("ListController", function () {
+describe('ListController', function() {
 
-    beforeEach(module("todos.main"));
+  beforeEach(module('todos.list'));
+
+  describe('constructor', function() {
 
     var controller, httpBackend;
 
-    beforeEach(function() {
+    beforeEach(inject(function ($controller, $httpBackend) {
 
-        inject(function($controller, $httpBackend) {
+      controller = $controller('ListController');
+      httpBackend = $httpBackend;
 
-            httpBackend = $httpBackend;
-            controller = $controller("ListController");
+    }));
 
-        });
+    it('should GET /api/todos', function() {
 
-    });
+      httpBackend.expectGET('/api/todos')
+          .respond([
+            { id: '42' }
+          ]);
 
-    it("should GET /api/todos", function () {
+      httpBackend.flush();
 
-        httpBackend.expectGET("/api/todos")
-            .respond({id: "42"});
-
-        httpBackend.flush();
-
-    });
-
-    it("should set a todos property", function () {
-
-        httpBackend.expectGET("/api/todos")
-            .respond([{id: "42"}]);
-
-        httpBackend.flush();
-
-        expect(controller.todos).toBeDefined();
+      expect(controller.todoList).toBeDefined();
+      expect(controller.todoList[0].id).toEqual('42');
 
     });
+
+  });
 
 });
