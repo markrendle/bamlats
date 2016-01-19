@@ -4,6 +4,11 @@ namespace ToDos {
 
     interface ToDoItem {
         id: string;
+        text: string;
+        due: string;
+        created: string;
+        done: string;
+        tags: string[];
     }
 
     class ListController {
@@ -16,6 +21,12 @@ namespace ToDos {
                     this.todoList = response.data;
                 });
 
+        }
+
+        public isOverdue(item: ToDoItem): boolean {
+            if (!item.due) return false;
+            let due = moment.utc(item.due, '');
+            return due.isBefore(moment.utc());
         }
 
     }

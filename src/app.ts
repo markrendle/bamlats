@@ -2,7 +2,8 @@ namespace ToDos {
 
     const deps = [
         'ui.router',
-        'todos.list'
+        'todos.list',
+        'todos.filters'
     ];
 
     const app = angular.module('todos', deps);
@@ -28,6 +29,12 @@ namespace ToDos {
     app.config(($urlRouterProvider: angular.ui.IUrlRouterProvider) => {
 
         $urlRouterProvider.otherwise('/');
+
+    });
+
+    app.config((localeProvider: LocaleProvider) => {
+
+        localeProvider.override = 'en-GB';
 
     });
 

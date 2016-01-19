@@ -1,6 +1,11 @@
 namespace ToDos {
 
-    export const listModule = angular.module('todos.list', ['ui.router']);
+    const requires = [
+        'ui.router',
+        'todos.filters'
+    ];
+
+    export const listModule = angular.module('todos.list', requires);
 
     listModule.config(($stateProvider: angular.ui.IStateProvider) => {
 
