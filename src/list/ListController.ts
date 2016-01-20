@@ -2,7 +2,6 @@
 
 namespace ToDos {
 
-
     class ListController {
         public todoList: ToDoItem[];
 
@@ -25,6 +24,10 @@ namespace ToDos {
                 controller: 'NewTodoController',
                 controllerAs: 'newCtrl',
                 templateUrl: 'editors/new.html'
+            })
+            .result
+            .then((item: ToDoItem) => {
+                this.todoList.push(item);
             });
         }
 
