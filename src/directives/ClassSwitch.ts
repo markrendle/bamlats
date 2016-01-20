@@ -10,6 +10,34 @@ namespace ToDos {
         return d;
     });
 
+    function applyClasses(element: JQuery, array: any[]) {
+        let done = false;
+        for (let item of array) {
+            if (typeof item === 'object') {
+                let klass = Object.keys(item)[0];
+
+                if (done) {
+                    element.removeClass(klass);
+                } else {
+                    let value = item[klass];
+                    if (value) {
+                        done = true;
+                        element.addClass(klass);
+                    } else {
+                        element.removeClass(klass);
+                    }
+                }
+            } else {
+                // Assume item is a string at this point
+                if (done) {
+                    element.removeClass(item);
+                } else {
+                    element.addClass(item);
+                }
+            }
+        }
+    }
+
     module.directive('classSwitch', () => {
 
         // SEAC
@@ -22,32 +50,11 @@ namespace ToDos {
             }
 
             let array = scope.$eval(expr);
+            applyClasses(element, array);
 
-            let done = false;
-            for (let item of array) {
-                if (typeof item === 'object') {
-                    let klass = Object.keys(item)[0];
-
-                    if (done) {
-                        element.removeClass(klass);
-                    } else {
-                        let value = item[klass];
-                        if (value) {
-                            done = true;
-                            element.addClass(klass);
-                        } else {
-                            element.removeClass(klass);
-                        }
-                    }
-                } else {
-                    // Assume item is a string at this point
-                    if (done) {
-                        element.removeClass(item);
-                    } else {
-                        element.addClass(item);
-                    }
-                }
-            }
+            scope.$watch(expr, (newValue) => {
+                applyClasses(element, newValue);
+            });
 
         }
 

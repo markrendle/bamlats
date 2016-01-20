@@ -3,41 +3,53 @@
 <div class="container">
 
   <div class="row">
-    <div class="col-md-1 col-sm-2">
-      <button class="btn btn-success btn-sm" ng-click="listCtrl.addNew()">Add new</button>
-    </div>
-  </div>
+    <div class="col-md-6">
 
-  <hr>
+      <div class="row">
+        <div class="col-md-1 col-sm-2">
+          <button class="btn btn-success btn-sm" ng-click="listCtrl.addNew()">Add new</button>
+        </div>
+      </div>
 
-  <div class="row" ng-repeat="item in listCtrl.todoList">
+      <hr>
 
-    <div class="col-md-12">
+      <div class="row" ng-repeat="item in listCtrl.todoList">
 
-      <div class="panel"
-        class-switch="{'panel-success': listCtrl.isDone(item)},
+        <div class="col-md-12">
+
+          <div class="panel"
+               class-switch="{'panel-success': listCtrl.isDone(item)},
                        {'panel-danger': listCtrl.isOverdue(item)},
                        'panel-default'">
-        <div class="panel-body">
-          {{item.text}}
-        </div>
-        <div class="panel-footer">
-          <div class="pull-right" ng-if="!item.done">
-            <button class="btn btn-sm btn-success"
-                    ng-click="listCtrl.markDone(item)">
-              <!--<i class="fa fa-check-circle"></i>-->
-              <happy-face></happy-face>
-            </button>
-          </div>
+
+            <div class="panel-body">
+              <a ui-sref=".edit({id: item.id})">{{item.text}}</a>
+            </div>
+
+            <div class="panel-footer">
+              <div class="pull-right" ng-if="!item.done">
+                <button class="btn btn-sm btn-success"
+                        ng-click="listCtrl.markDone(item)">
+                  <!--<i class="fa fa-check-circle"></i>-->
+                  <happy-face></happy-face>
+                </button>
+              </div>
           <span ng-switch="!item.done">
             <span ng-switch-when="true">Due: {{item.due | moment : 'short'}}</span>
             <span ng-switch-default>Done: {{item.done | moment : 'short'}}</span>
           </span>
-        </div>
-      </div>
+            </div>
+          </div>
 
+        </div>
+
+      </div>
     </div>
 
+    <div class="col-md-6" ng-if="listCtrl.inEditState">
+      <ui-view></ui-view>
+    </div>
   </div>
+
 
 </div>

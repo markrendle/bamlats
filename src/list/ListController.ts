@@ -7,6 +7,7 @@ namespace ToDos {
 
         constructor(private todoService: ToDoService,
                     errors: ErrorService,
+                    private $state: angular.ui.IStateService,
                     private $modal: angular.ui.bootstrap.IModalService) {
 
             todoService.list()
@@ -62,6 +63,10 @@ namespace ToDos {
 
         public isDone(item: ToDoItem) {
             return !!item.done;
+        }
+
+        public get inEditState() {
+            return this.$state.is('root.todos.edit');
         }
 
     }

@@ -23,6 +23,14 @@ namespace ToDos {
 
         });
 
+        $stateProvider.state({
+            name: 'root.todos.edit',
+            url: '/{id}',
+            controller: 'EditController',
+            controllerAs: 'editCtrl',
+            templateUrl: 'editors/edit.html'
+        });
+
     });
 
 }
