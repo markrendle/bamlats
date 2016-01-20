@@ -5,7 +5,7 @@ namespace ToDos {
     class ListController {
         public todoList: ToDoItem[];
 
-        constructor(todoService: ToDoService,
+        constructor(private todoService: ToDoService,
                     errors: ErrorService,
                     private $modal: angular.ui.bootstrap.IModalService) {
 
@@ -27,7 +27,16 @@ namespace ToDos {
             })
             .result
             .then((item: ToDoItem) => {
-                this.todoList.push(item);
+
+                let info = this.$modal.open({
+                    template: '<div><i class="fa fa-spinner fa-spin fa-2x"></i> Saving...</div>'
+                });
+
+                this.todoService.add(item)
+                    .then((item) => {
+                        this.todoList.push(item);
+                        info.dismiss();
+                    });
             });
         }
 

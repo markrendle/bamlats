@@ -43,6 +43,11 @@ namespace ToDos {
 
             item.id = item.id || Date.now().toString();
 
+            return wrapError(
+                this.$http.post<ToDoItem>('/api/todos', item)
+                    .then(() => item)
+            );
+
         }
 
     }
