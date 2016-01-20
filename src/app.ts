@@ -48,4 +48,26 @@ namespace ToDos {
 
     });
 
+    app.config(($httpProvider: angular.IHttpProvider) => {
+        const apiRegex = /^\/api\//;
+
+        $httpProvider.interceptors.push(($q: angular.IQService) => ({
+            request: (config: angular.IRequestConfig) => {
+                if (apiRegex.test(config.url)) {
+                    //config.headers["Authorization"] = "Bearer " + localStorage['apiToken'];
+                    config.headers["Authorization"] = "SecretSquirrel";
+                }
+
+                // HAS TO RETURN THE CONFIG OUT AGAIN
+                return config;
+            },
+            responseError: (response: angular.IHttpPromiseCallbackArg) => {
+                if (response.status === 401) {
+                    window.location.replace('https://id.cloudlens.io');
+                }
+                return $q.reject(response);
+            }
+        }));
+    });
+
 }

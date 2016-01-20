@@ -9,7 +9,9 @@ namespace ToDos {
     class EditController {
         public todo: ToDoItem;
 
-        constructor($stateParams: EditParams, $http: angular.IHttpService) {
+        constructor($stateParams: EditParams,
+                    private $state: angular.ui.IStateService,
+                    $http: angular.IHttpService) {
 
             $http.get<ToDoItem>('/api/todos/' + $stateParams.id)
                 .then((response) => {
@@ -18,6 +20,12 @@ namespace ToDos {
 
         }
 
+        public close() {
+            this.$state.go('^');
+        }
+
     }
+
+    editorsModule.controller('EditController', EditController);
 
 }
