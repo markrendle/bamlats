@@ -9,6 +9,7 @@
         <label for="name">What's to do?</label>
         <input class="form-control" type="text" name="text" id="name"
                ng-model="newCtrl.todo.text"
+               autofocus
                required maxlength="1024">
 
         <div ng-messages="newTodo.text.$error"

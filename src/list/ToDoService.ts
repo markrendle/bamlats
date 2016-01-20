@@ -50,6 +50,19 @@ namespace ToDos {
 
         }
 
+        public markDone(item: ToDoItem) {
+
+            item.done = moment.utc().toISOString();
+
+            let url = '/api/todos/' + item.id;
+
+            return wrapError(
+                this.$http.put<ToDoItem>(url, item)
+                    .then(() => item)
+            );
+
+        }
+
     }
 
     listModule.service('todoService', ToDoService);

@@ -40,6 +40,20 @@ namespace ToDos {
             });
         }
 
+        public markDone(item: ToDoItem) {
+
+            this.todoService.markDone(item)
+                .then((savedItem) => {
+
+                    if (savedItem !== item) {
+                        let index = this.todoList.indexOf(item);
+                        this.todoList.splice(index, 1, savedItem);
+                    }
+
+                });
+
+        }
+
         public isOverdue(item: ToDoItem): boolean {
             if (!item.due) return false;
             let due = moment.utc(item.due, '');
