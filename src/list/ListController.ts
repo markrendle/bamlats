@@ -8,7 +8,7 @@ namespace ToDos {
 
         constructor(todoService: ToDoService,
                     errors: ErrorService,
-                    $modal: angular.ui.bootstrap.IModalService) {
+                    private $modal: angular.ui.bootstrap.IModalService) {
 
             todoService.list()
                 .then((list) => {
@@ -21,7 +21,11 @@ namespace ToDos {
         }
 
         public addNew() {
-
+            this.$modal.open({
+                controller: 'NewTodoController',
+                controllerAs: 'newCtrl',
+                templateUrl: 'editors/new.html'
+            });
         }
 
         public isOverdue(item: ToDoItem): boolean {
