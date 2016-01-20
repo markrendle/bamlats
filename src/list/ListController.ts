@@ -60,6 +60,10 @@ namespace ToDos {
             return due.isBefore(moment.utc());
         }
 
+        public isDone(item: ToDoItem) {
+            return !!item.done;
+        }
+
     }
 
     listModule.controller('ListController', ListController);
