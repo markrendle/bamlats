@@ -6,16 +6,21 @@ namespace ToDos {
     class ListController {
         public todoList: ToDoItem[];
 
-        constructor(todoService: ToDoService, errors: ErrorService) {
+        constructor(todoService: ToDoService,
+                    errors: ErrorService,
+                    $modal: angular.ui.bootstrap.IModalService) {
 
             todoService.list()
                 .then((list) => {
                     this.todoList = list;
-                    errors.push({message: 'test', level: 'warning'});
                 })
                 .catch((error: ErrorInfo) => {
                     errors.push(error);
                 });
+
+        }
+
+        public addNew() {
 
         }
 

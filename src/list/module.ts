@@ -2,6 +2,7 @@ namespace ToDos {
 
     const requires = [
         'ui.router',
+        'ui.bootstrap',
         'todos.filters',
         'todos.errors'
     ];

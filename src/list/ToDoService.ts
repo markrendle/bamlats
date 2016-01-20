@@ -2,17 +2,6 @@
 
 namespace ToDos {
 
-    function convertHttpError<T>(response: angular.IHttpPromiseCallbackArg<T>): angular.IPromise<T> {
-        switch (response.status) {
-            case 401:
-                throw {message: 'Not logged in', level: 'danger'};
-            case 404:
-                throw {message: 'Data was not found', level: 'danger'};
-            default:
-                throw {message: 'A bad thing has happened', level: 'danger'};
-        }
-    };
-
     export interface ToDoItem {
         id: string;
         text: string;
