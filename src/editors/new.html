@@ -10,17 +10,36 @@
         <input class="form-control" type="text" name="text" id="name"
                ng-model="newCtrl.todo.text"
                required maxlength="1024">
+
+        <div ng-messages="newTodo.text.$error"
+             ng-if="newTodo.text.$touched">
+
+          <div ng-messages-include="new-todo-messages"></div>
+
+          <span class="help-block" ng-message="maxlength">
+            Keep it short (max 1024 characters)!
+          </span>
+
+        </div>
+
       </div>
     </div>
     <div class="row">
-    <div class="form-group">
-      <div class="col-md-2">
-        <label for="dueInDays" class="control-label">Due in:</label>
-        <input class="form-control" type="number" name="dueInDays" id="dueInDays"
-               ng-model="newCtrl.todo.dueInDays"
-               required max="365" min="0">
+      <div class="form-group">
+        <div class="col-md-3">
+          <label for="dueInDays" class="control-label">Due in:</label>
+          <input class="form-control" type="number" name="dueInDays" id="dueInDays"
+                 ng-model="newCtrl.todo.dueInDays"
+                 required max="365" min="0">
+          <div ng-messages="newTodo.dueInDays.$error"
+               ng-if="newTodo.dueInDays.$touched">
+            <div ng-messages-include="new-todo-messages"></div>
+            <span class="help-block" ng-message="min, max">
+              Please enter a value between 0 and 365.
+            </span>
+          </div>
+        </div>
       </div>
-    </div>
     </div>
   </div>
 
@@ -29,3 +48,9 @@
     <button class="btn btn-warning" type="button" ng-click="$dismiss()">Cancel</button>
   </div>
 </form>
+
+<script type="text/ng-template" id="new-todo-messages">
+  <span class="help-block" ng-message="required">
+            You have to enter something here!
+          </span>
+</script>
