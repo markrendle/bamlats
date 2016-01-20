@@ -4,13 +4,23 @@
   </div>
 
   <div class="modal-body">
-    <div class="form-group">
-      <label for="name">What's to do?</label>
-      <input class="form-control" type="text" name="text" id="name">
+    <div class="row">
+      <div class="form-group">
+        <label for="name">What's to do?</label>
+        <input class="form-control" type="text" name="text" id="name"
+               ng-model="newCtrl.todo.text"
+               required maxlength="1024">
+      </div>
     </div>
+    <div class="row">
     <div class="form-group">
-      <label for="dueInDays">Due in:</label>
-      <input class="form-control" type="number" name="dueInDays" id="dueInDays">
+      <div class="col-md-2">
+        <label for="dueInDays" class="control-label">Due in:</label>
+        <input class="form-control" type="number" name="dueInDays" id="dueInDays"
+               ng-model="newCtrl.todo.dueInDays"
+               required max="365" min="0">
+      </div>
+    </div>
     </div>
   </div>
 
