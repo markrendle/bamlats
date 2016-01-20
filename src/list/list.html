@@ -14,8 +14,10 @@
 
     <div class="col-md-12">
 
-      <div class="panel {{listCtrl.isDone(item) ? 'panel-success' :
-        listCtrl.isOverdue(item) ? 'panel-danger' : 'panel-default'}}">
+      <div class="panel"
+        class-switch="{'panel-success': listCtrl.isDone(item)},
+                       {'panel-danger': listCtrl.isOverdue(item)},
+                       'panel-default'">
         <div class="panel-body">
           {{item.text}}
         </div>
@@ -23,11 +25,14 @@
           <div class="pull-right" ng-if="!item.done">
             <button class="btn btn-sm btn-success"
                     ng-click="listCtrl.markDone(item)">
-              <i class="fa fa-check-circle"></i>
+              <!--<i class="fa fa-check-circle"></i>-->
+              <happy-face></happy-face>
             </button>
           </div>
-          <span ng-if="!item.done">Due: {{item.due | moment : 'short'}}</span>
-          <span ng-if="!!item.done">Done: {{item.done | moment : 'short'}}</span>
+          <span ng-switch="!item.done">
+            <span ng-switch-when="true">Due: {{item.due | moment : 'short'}}</span>
+            <span ng-switch-default>Done: {{item.done | moment : 'short'}}</span>
+          </span>
         </div>
       </div>
 

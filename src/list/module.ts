@@ -5,7 +5,8 @@ namespace ToDos {
         'ui.bootstrap',
         'todos.filters',
         'todos.errors',
-        'todos.editors'
+        'todos.editors',
+        'todos.directives'
     ];
 
     export const listModule = angular.module('todos.list', requires);
